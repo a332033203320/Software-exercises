@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link data-default-icon="https://static.cdninstagram.com/rsrc.php/v3/yI/r/VsNE-OHk_8a.png" rel="icon"
+        sizes="192x192" href="https://static.cdninstagram.com/rsrc.php/v3/yI/r/VsNE-OHk_8a.png" />
+    <link rel="stylesheet" href="/node_modules/bootstrap-icons/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram API</title>
+    <style>
+        /* width */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 5px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        a:hover {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="container-fluid fixed-top d-inline-block" style="padding: 0%;">
+            <nav class="navbar bg-dark" style="height:70px">
+                <div class="container-fluid d-inline-block font-monospace">
+                    <img src="https://janstockcoin.com/wp-content/uploads/2021/06/pexels-photo-747964-2048x1293.jpeg"
+                        class="rounded-circle img-fluid me-2"
+                        style="height: 50px !important; width: 50px !important; margin-bottom: 15px !important;"
+                        alt="#" />
+                    <a class="navbar-brand text-white" style="font-size: 20px !important;">James@Account</a>
+                    <span class="text-white fs-4">|</span>
+                    <a class="navbar-brand text-white" style="font-size: 40px !important"
+                        onclick="javascript:document.getElementById('iframe').src='/Home'">Home</a>
+                    <span class="text-white fs-4">|</span>
+                    <a class="navbar-brand text-white" style="font-size: 40px !important"
+                        onclick="javascript:document.getElementById('iframe').src='/OpenAI'">OpenAI</a>
+                </div>
+            </nav>
+        </div>
+        <div class="container-fluid" style="margin-top: 3%; padding: 0%; height: 50rem;">
+            <iframe id="iframe" src="" style="height: 100%; width: 100%;" scrolling="no"></iframe>
+        </div>
+    </div>
+    <div class="container-fluid" style="margin-top: 0%; padding: 0%;">
+        <footer>
+            <div class="p-3" style="background-color: rgba(0, 0, 0, 0.7);">
+                <div class="text-center">
+                    <span class="font-monospace me-5 fs-4" style="color: white;">© 2023 Copyright: |</span>
+                    <a class="font-monospace text-right p-3 fs-4" href="#">Instagram.com</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>

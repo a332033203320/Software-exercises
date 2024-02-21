@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link data-default-icon="https://static.cdninstagram.com/rsrc.php/v3/yI/r/VsNE-OHk_8a.png" rel="icon"
+        sizes="192x192" href="https://static.cdninstagram.com/rsrc.php/v3/yI/r/VsNE-OHk_8a.png" />
+    <link rel="stylesheet" href="/node_modules/bootstrap-icons/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 5px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid" style="margin-top: 3%; position: absolute; padding: 0%;">
+        <div class="container">
+            <div class="row justify-content-center align-items-center h-100vh">
+                <div class="col-4 border py-4">
+                    <h1 class="h4 text-center" style="font-weight: bold; font-size: 4ch; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">OpenAI 聊天室</h1>
+                    <hr />
+                    <div class="row ">
+                        <div class="col-12">
+                            <div id="chatarea" class="mb-4 h-600" style="height: 60vh !important; overflow: auto; font-family: 標楷體;">
+                                <div class="d-flex align-items-center mb-4">
+                                    <img src="../pictures/chatgpt-logo.png"
+                                        class="chatLogo object-fit-cover rounded-circle"
+                                        style="height: 40px; width: 40px;" alt="" srcset="">
+                                    <p class="bg-body-secondary p-3 rounted m-0 rounded text-secondary">請留言...</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 mt-auto">
+                            <hr />
+                            <form>
+                                <div class="form-floating mt-3">
+                                    <input type="text" class="form-control" id="chatInput" placeholder="開始聊天...">
+                                    <label for="chatInput">開始聊天...</label>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+<script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+<script>
+    const request = async (message) => {
+        try {
+            const response = await axios.post('http://192.168.182.128:12345/OpenAI/post',
+                {
+                    sentence: message,
+                });
+            const content = response.data.Data.choices[0].message.content;
+            return content;
+        }
+        catch (error) { return "處理請求時發生錯誤..."; }
+    }
+
+    document.getElementById('chatInput').addEventListener('keypress', (e) => {
+        if (e.key == "Enter") {
+            e.preventDefault();
+            const message = e.target.value;
+            const chatarea = document.getElementById('chatarea');
+            chatarea.innerHTML += "<div class='d-flex justify-content-end align-items-center mb-4'> <p class='bg-body-secondary p-3 w-100 rounted m-0 rounded' style='overflow-wrap: break-word;'>" + message
+                + "</p><img src='../pictures/user.png' class='chatLogo object-fit-cover rounded-circle' alt='user' srcset='' style='heigth: 40px; width: 40px'></div>";
+            e.target.value = "";   
+            chatarea.scrollTop = chatarea.scrollHeight; 
+            request(message).then((res) => {
+                chatarea.innerHTML += "<div class='d-flex justify-content-end align-items-center mb-4'><img src='../pictures/chatgpt-logo.png' class='chatLogo object-fit-cover rounded-circle' alt='user' srcset='' style='heigth: 40px; width: 40px'>" +
+                    "<p class='bg-body-secondary p-3 w-100 rounted m-0 rounded' style='overflow: auto;'>" + res + "</p></div>";
+                chatarea.scrollTop = chatarea.scrollHeight;  
+            }).catch(() => { alert('處理請求時發生錯誤...'); });      
+        }
+    });
+</script>
